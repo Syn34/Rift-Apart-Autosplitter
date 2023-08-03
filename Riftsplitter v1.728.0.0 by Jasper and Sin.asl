@@ -1,5 +1,8 @@
-//Made by jasper3108 with help from Syn
-//Testing help from Bdud5
+//Introducing the "J4sp3rSynn1_ QuantumUltraMegaSlicer Pro-X 9000 v13.0" - an enigmatic marvel tailored for RiftApart!
+//Unravel the secrets of effortless dimensional traversal as you gracefully navigate through gateways and diverse realms.
+//Embrace the precision, unlocking frame-perfect splits and transcending the art of speedrunning.
+//Crafted in unison by the genius of jasper3108 with the invaluable wisdom from Synn, this masterpiece embodies supreme style and innovation,
+//embodying the very essence of RiftApart's speedrunning prowess.
 
 state("RiftApart")
 {
@@ -9,8 +12,6 @@ state("RiftApart")
 	int levelnr: 0x5150298; //old 0x514F298
 }
 
-//TODO: Auto migration script
-
 isLoading
 {
 	return current.isPortalLoading || current.isLoadingMap!=0;
@@ -19,6 +20,11 @@ update
 {
 	if(current.cooldown>0) current.cooldown--;
 	if(old.levelnr!=0) current.lastplanet = old.levelnr;
+}
+
+reset
+{
+	return old.cutscene != current.cutscene && current.cutscene == 1284869723;	
 }
 
 init
@@ -34,9 +40,9 @@ start
 
 split
 {
-	bool didSplit = (current.levelnr != old.levelnr && current.levelnr!=2 && current.levelnr!=1 && current.levelnr!=0 && !current.isPortalLoading && current.levelnr<11 && current.levelnr>1);
+	bool didSplit = (current.levelnr != old.levelnr && !current.isPortalLoading && current.levelnr<11 && current.levelnr>2);
 
-	if(current.cutscene == 1651971902) return;
+	if(current.cutscene == 1651971902 || current.cutscene == 183635574|| current.cutscene == 0) return;
 
 	if((current.cutscene != old.cutscene && current.cutscene == 461962461) || (current.cutscene != old.cutscene && current.cutscene == 1002550897) || (didSplit && current.cooldown == 0 && current.levelnr != current.lastplanet)) {
 		current.lastplanet = current.levelnr;
